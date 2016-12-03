@@ -1,0 +1,23 @@
+{
+  "name": "pageslicer",
+  "version": "0.0.0",
+  "description": "slices (fromIndex, toIndex) to obtain an optimal [{pageSize, pageIndex, offset, length}, ...] set",
+  "main": "index.js",
+  "scripts": {
+    "test": "xo && nyc ava"
+  },
+  "keywords": [
+    "from",
+    "to",
+    "page",
+    "slice"
+  ],
+  "author": "gautaz",
+  "license": "MIT",
+  "devDependencies": {
+    "ava": "^0.17.0",
+    "chai": "^3.5.0",
+    "nyc": "^10.0.0",
+    "xo": "^0.17.1"
+  }
+}
