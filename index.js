@@ -92,11 +92,8 @@ module.exports = πCost => {
 		return result;
 	}
 
-	function post(intervals, optimum) {
-		return optimum;
-	}
-
-	return intervals => post(intervals, opis(intervals));
+	return intervals => opis(intervals).sort((left, right) => left.pagedIntervals[left.pagedIntervals.length - 1][3] <= right.pagedIntervals[0][2] ?
+		-1 : (right.pagedIntervals[right.pagedIntervals.length - 1][3] <= left.pagedIntervals[0][2] ? 1 : 0));
 };
 module.exports.pagedInterval = pagedInterval;
 module.exports.pagedIntervals = pagedIntervals;
