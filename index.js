@@ -49,7 +49,7 @@ const optimizedPagedIntervals = πCost => {
 		for (let pageSize = 1; pageSize < intervals[intervals.length - 1][1] + 1; ++pageSize) {
 			const πs = pis(pageSize);
 			const πC = πCost(pageSize);
-			const cost = ~~(πs.reduce((c, π) => c + πC(π), 0));
+			const cost = πs.reduce((c, π) => c + πC(π), 0);
 			if (cost < best.cost) {
 				best = {pageSize, cost, pagedIntervals: πs};
 			}
