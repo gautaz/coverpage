@@ -1,16 +1,17 @@
 {
   "name": "pageslicer",
   "version": "0.0.0",
-  "description": "slices (fromIndex, toIndex) to obtain an optimal [{pageSize, pageIndex, offset, length}, ...] set",
+  "description": "obtain an optimal set of pages covering a set of integer intervals",
   "main": "index.js",
   "scripts": {
     "test": "xo && nyc ava"
   },
   "keywords": [
-    "from",
-    "to",
+    "integer",
+    "interval",
     "page",
-    "slice"
+    "optimal",
+    "cover"
   ],
   "author": "gautaz",
   "license": "MIT",

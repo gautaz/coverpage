@@ -60,6 +60,15 @@ const optimizedPagedIntervals = πCost => {
 
 module.exports = πCost => {
 	const oπs = optimizedPagedIntervals(πCost);
+	const check = intervals => (intervals.reduce((bound, interval, index) => {
+		if (interval[0] < bound) {
+			throw new Error(`interval ${interval} passed as argument ${index} must start at least at ${bound}`);
+		}
+		if ((interval[0] !== ~~interval[0]) || (interval[1] !== ~~interval[1])) {
+			throw new Error(`interval ${interval} passed as argument ${index} must bounded by integers`);
+		}
+		return interval[1];
+	}, -Infinity) || true) && intervals;
 
 	function opis(intervals, lowestIndex = 0) {
 		const candidate = oπs(intervals, lowestIndex);
@@ -92,7 +101,7 @@ module.exports = πCost => {
 		return result;
 	}
 
-	return intervals => opis(intervals).sort((left, right) => left.pagedIntervals[left.pagedIntervals.length - 1][3] <= right.pagedIntervals[0][2] ?
+	return (...intervals) => opis(check(intervals)).sort((left, right) => left.pagedIntervals[left.pagedIntervals.length - 1][3] <= right.pagedIntervals[0][2] ?
 		-1 : (right.pagedIntervals[right.pagedIntervals.length - 1][3] <= left.pagedIntervals[0][2] ? 1 : 0));
 };
 module.exports.pagedInterval = pagedInterval;

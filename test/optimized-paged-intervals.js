@@ -4,7 +4,7 @@ import {optimizedPagedIntervals} from '..';
 
 const oπs = optimizedPagedIntervals(pageSize => {
 	const sizeCost = (1 / pageSize) + 1;
-	return π => sizeCost * (π[1] - π[0]);
+	return π => ~~(sizeCost * (π[1] - π[0]));
 });
 
 [...Array(5).keys()]
