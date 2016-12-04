@@ -20,7 +20,7 @@ coverpage(I1, I2, ..., IN) // Ix are integer pairs [lower bound, upper bound]
 >
 > Note that it first takes the page size as its only argument and then should return a function taking a paged interval as its only argument, this later function must finally return the cost as a number.
 >
-> Also note that the upper bound of an interval is the lowest integer greater than any element of the interval.
+> Also note that the upper bound of an interval is the lowest integer greater than any element of the interval and is thus not part of the interval.
 
 The following prerequisite on integer intervals passed in argument is required: `I1 < I2 < ... < IN`.
 Which means that the intervals must be disjoint and passed in ascending order.
