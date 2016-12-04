@@ -1,6 +1,6 @@
 /* All indexes are zero based
  * An interval is a paired Array of indexes: [lowerIndex, upperIndex]
- * A paged interval (pi or π) is a tuple of 3 elements: [lowerIndex, upperIndex, intervalIndexesUpperBoundary]
+ * A paged interval (pi or π) is a tuple of 2 or 4 elements: [lowerIndex, upperIndex(, lowerIntervalIndex, upperIntervalIndex)]
  */
 
 const lowerPagedIndex = pageSize => index => index - (index % pageSize);
@@ -24,9 +24,9 @@ const pagedIntervals = (intervals, lowerIndex = 0) => pageSize => {
 		const lastπ = πs[πs.length - 1] || [];
 		if (π[0] <= lastπ[1]) {
 			lastπ[1] = π[1];
-			lastπ[2] = offset + intervalIndex;
+			lastπ[3] = offset + intervalIndex;
 		} else {
-			πs.push(π.concat(offset + intervalIndex));
+			πs.push(π.concat(lowerIndex + intervalIndex, offset + intervalIndex));
 		}
 		return πs;
 	}, []);
@@ -71,7 +71,7 @@ module.exports = πCost => {
 			let lowerIndex = lowestIndex;
 
 			for (let π of candidate.pagedIntervals) {
-				const partialCandidates = opis(intervals.slice(lowerIndex - lowestIndex, π[2] - lowestIndex), lowerIndex);
+				const partialCandidates = opis(intervals.slice(lowerIndex - lowestIndex, π[3] - lowestIndex), lowerIndex);
 				const piCost = πC(π);
 				if (partialCandidates.reduce((cost, c) => cost + c.cost, 0) < piCost) {
 					result.push(...partialCandidates);
@@ -79,7 +79,7 @@ module.exports = πCost => {
 				} else {
 					newPagedIntervals.push(π);
 				}
-				lowerIndex = π[2];
+				lowerIndex = π[3];
 			}
 
 			if (newPagedIntervals.length === 0) {
