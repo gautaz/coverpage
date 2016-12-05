@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "npm install && xo && nyc ava",
-    "preversion": "npm test"
+    "preversion": "npm test",
+    "report": "npm test && nyc report --reporter=html && opener coverage/index.html"
   },
   "keywords": [
     "integer",
@@ -14,12 +15,17 @@
     "optimal",
     "cover"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gautaz/coverpage.git"
+  },
   "author": "gautaz",
   "license": "MIT",
   "devDependencies": {
     "ava": "^0.17.0",
     "chai": "^3.5.0",
     "nyc": "^10.0.0",
+    "opener": "^1.4.2",
     "xo": "^0.17.1"
   }
 }
