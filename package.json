@@ -1,5 +1,5 @@
 {
-  "name": "pageslicer",
+  "name": "coverpage",
   "version": "0.0.0",
   "description": "obtain an optimal set of pages covering a set of integer intervals",
   "main": "index.js",
