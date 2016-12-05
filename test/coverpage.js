@@ -71,4 +71,6 @@ const cover = coverpage(pageSize => {
 test('non disjoint intervals', () => expect(() => cover([1, 2], [1, 3])).to.throw(Error));
 test('non ascending  intervals', () => expect(() => cover([2, 3], [1, 2])).to.throw(Error));
 test('non integer intervals', () => expect(() => cover([1.3, 2.5])).to.throw(Error));
+test('no argument (nothing to cover)', () => expect(cover()).to.deep.equal([{pageSize: 0, cost: 0, pagedIntervals: []}]));
+test('void interval (impossible to cover)', () => expect(cover([0, 0])).to.deep.equal([{pageSize: 0, cost: Infinity, pagedIntervals: []}]));
 test('recurse intervals', () => expect(cover(...recurseIntervals)).to.deep.equal(recursePagedIntervals));

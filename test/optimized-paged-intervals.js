@@ -7,6 +7,12 @@ const oπs = optimizedPagedIntervals(pageSize => {
 	return π => ~~(sizeCost * (π[1] - π[0]));
 });
 
+test('oπs([])', () => expect(oπs([])).to.deep.equal({
+	pageSize: 0,
+	cost: 0,
+	pagedIntervals: []
+}));
+
 [...Array(5).keys()]
 	.forEach(last => test(`oπs([[0, ${last + 1}]])`,
 		() => expect(oπs([[0, last + 1]])).to.deep.equal({pageSize: last + 1, cost: last + 2, pagedIntervals: [[0, last + 1, 0, 1]]})
