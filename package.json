@@ -4,7 +4,8 @@
   "description": "obtain an optimal set of pages covering a set of integer intervals",
   "main": "index.js",
   "scripts": {
-    "test": "xo && nyc ava"
+    "test": "npm install && xo && nyc ava",
+    "preversion": "npm test"
   },
   "keywords": [
     "integer",
