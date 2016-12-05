@@ -65,7 +65,7 @@ module.exports = πCost => {
 			throw new Error(`interval ${interval} passed as argument ${index} must start at least at ${bound}`);
 		}
 		if ((interval[0] !== ~~interval[0]) || (interval[1] !== ~~interval[1])) {
-			throw new Error(`interval ${interval} passed as argument ${index} must bounded by integers`);
+			throw new Error(`interval ${interval} passed as argument ${index} must be bound by integers`);
 		}
 		return interval[1];
 	}, -Infinity) || true) && intervals;
